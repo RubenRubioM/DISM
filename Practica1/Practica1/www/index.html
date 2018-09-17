@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Personalice la directiva de seguridad de contenido en la etiqueta meta como sea necesario. Agregue "unsafe-inline" a default-src para permitir JavaScript insertado.
+        Para obtener más detalles, consulte http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <!-- Hay que comentar esta linea para que deje usar bootstrap
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    -->
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+
+    <!--Llamadas para las hojas de estilo de bootstrap-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!-- Apache Cordova-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <!--JQUERY -->
+    <!--<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+    <!--JQUERY MOBILE -->
+    <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />-->
+    <!--JQUERY, Datatabla -->
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />-->
+    <!--<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>-->
+    <!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <!-- El atributo "async" es necesario para que RequireJS funcione en una aplicación de Windows. -->
+    <script type="text/javascript" data-main="scripts/startup" src="lib/require.2.1.8.js" async></script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+
+    <script type='text/javascript'>
+        function GetMap() {
+
+            var map = new Microsoft.Maps.Map('#myMap', {
+                credentials: 'AqphJZdvgCLdhp_ajUuuROok1O3_jHlHE0_FLN-o1STbqzYnTeGjchdE-0Nwp41N'
+            });
+            //Request the user's location
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var loc = new Microsoft.Maps.Location(
+                    position.coords.latitude,
+                    position.coords.longitude);
+                //Add a pushpin at the user's location.
+                var pin = new Microsoft.Maps.Pushpin(loc);
+                map.entities.push(pin);
+                //Center the map on the user's location.
+                map.setView({ center: loc, zoom: 15 });
+            });
+
+
+        }
+    </script>
+
+    <script>
+        var datos;
+        var datosfiltrados = [];
+        var key = 'key bing maps';
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://opendata.aemet.es/opendata/api/maestro/municipios?api_key=" + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs",
+            "method": "GET",
+            "headers": {
+                "cache-control": "no-cache"
+            }
+        }
+        $(document).on("pagecreate", "#index", function (event) {
+            InicializarGrid();
+        });
+        function InicializarGrid() {
+            $.ajax(settings).done(function (response) {
+                var j = 0;
+
+                //Parseo a objeto para filtrar y meter en datatable
+
+                datos = JSON.parse(response);
+                //Filtro los municipios que contengan "san vicente"
+                datos.forEach(function (entry) {
+                    if (entry.nombre.toLowerCase().indexOf("san vicente") > -1) {
+                        datosfiltrados[j] = entry;
+                        j = j + 1;
+                    }
+                });
+                tabla = $('#dataGrid').DataTable({
+                    "data": datosfiltrados,
+                    "columns": [
+                        {
+                            "data": "nombre"
+                        },
+                        {
+
+                            "data": "latitud"
+                        },
+                        {
+
+                            "data": "longitud"
+                        }
+                    ]
+                });
+            });
+        }
+    </script>
+
+    <title>Practica1</title>
+</head>
+<body>
+
+    
+
+
+</body>
+</html>
