@@ -1,14 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <!--
-        Personalice la directiva de seguridad de contenido en la etiqueta meta como sea necesario. Agregue "unsafe-inline" a default-src para permitir JavaScript insertado.
-        Para obtener más detalles, consulte http://go.microsoft.com/fwlink/?LinkID=617521
-    -->
-    <!-- Hay que comentar esta linea para que deje usar bootstrap
-
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-    -->
+   
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
@@ -23,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!--JQUERY -->
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <!--JQUERY MOBILE -->
 
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -35,8 +28,8 @@
 
     <script type="text/javascript" src="cordova.js"></script>
     <!-- El atributo "async" es necesario para que RequireJS funcione en una aplicación de Windows. -->
-    <script type="text/javascript" data-main="scripts/startup" src="lib/require.2.1.8.js" async></script>
-    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+    <!--<script type="text/javascript" data-main="scripts/startup" src="lib/require.2.1.8.js" async></script>-->
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[AqphJZdvgCLdhp_ajUuuROok1O3_jHlHE0_FLN-o1STbqzYnTeGjchdE-0Nwp41N]' async defer></script>
 
     <script type='text/javascript'>
         function GetMap() {
@@ -61,55 +54,87 @@
     </script>
 
     <script>
-        console.log("1");
+        
 
         var datos;
         var datosfiltrados = [];
-        var key = 'AqphJZdvgCLdhp_ajUuuROok1O3_jHlHE0_FLN-o1STbqzYnTeGjchdE-0Nwp41N';
+        var key = ' eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs ';
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "https://opendata.aemet.es/opendata/api/maestro/municipios?api_key=" + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs",
+            "url": "https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones?api_key="+ key,
             "method": "GET",
             "headers": {
                 "cache-control": "no-cache"
             }
         }
         $(document).on("pagecreate", "#index", function (event) {
-            console.log("2");
+            
 
             InicializarGrid();
         });
         function InicializarGrid() {
+            
             $.ajax(settings).done(function (response) {
+
+                /*
+                    Esta primera peticion ajax nos devuelve este body
+                    {
+                      "descripcion": "exito",
+                      "estado": 200,
+                      "datos": "https://opendata.aemet.es/opendata/sh/651d566d",
+                      "metadatos": "https://opendata.aemet.es/opendata/sh/0556af7a"
+                    }
+
+                    Con lo cual volveremos a hacer otra petición al valor "datos"
+                */
                 var j = 0;
 
-                //Parseo a objeto para filtrar y meter en datatable
-
-                datos = JSON.parse(response);
-                //Filtro los municipios que contengan "san vicente"
-                datos.forEach(function (entry) {
-                    if (entry.nombre.toLowerCase().indexOf("san vicente") > -1) {
-                        datosfiltrados[j] = entry;
-                        j = j + 1;
-                    }
-                });
-                tabla = $('#dataGrid').DataTable({
-                    "data": datosfiltrados,
-                    "columns": [
-                        {
-                            "data": "nombre"
-                        },
-                        {
-
-                            "data": "latitud"
-                        },
-                        {
-
-                            "data": "longitud"
+                
+                $.ajax(response.datos).done((response) => {
+                    /*
+                        Esta segunda peticion nos devuelve este body
+                        [ {
+                          "latitud" : "431825N",
+                          "provincia" : "A CORUÑA",
+                          "altitud" : "98",
+                          "indicativo" : "1387E",
+                          "nombre" : "A CORUÑA AEROPUERTO",
+                          "indsinop" : "08002",
+                          "longitud" : "082219W"
                         }
-                    ]
-                });
+                    */
+                    datos = JSON.parse(response);
+
+                    datos.forEach(function (entry) {
+                        if (true) {
+                            datosfiltrados[j] = entry;
+                            
+                            j = j + 1;
+                        }
+                    });
+                    tabla = $('#dataGrid').DataTable({
+                        "data": datosfiltrados,
+                        "columns": [
+                            {
+                                "data": "nombre"
+                            },
+                            {
+
+                                "data": "latitud"
+                            },
+                            {
+
+                                "data": "longitud"
+                            },
+                            {
+                                "data": "indsinop"
+                            }
+                        ]
+                    });
+
+                })
+                
             });
         }
     </script>
@@ -117,8 +142,6 @@
     <title>Practica1</title>
 </head>
 <body>
-
-
 
     <div data-role="page" id="index">
         <div data-role="header">
@@ -131,6 +154,7 @@
                         <th>Nombre</th>
                         <th>Latidud</th>
                         <th>Longitud</th>
+                        <th>Idema</th>
                     </tr>
                 </thead>
             </table>
@@ -140,37 +164,7 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">WebSiteName</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Page 1-1</a></li>
-                            <li><a href="#">Page 1-2</a></li>
-                            <li><a href="#">Page 1-3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div id="myMap" style='position:relative;width:600px;height:400px;'></div>
 
 </body>
 </html>
