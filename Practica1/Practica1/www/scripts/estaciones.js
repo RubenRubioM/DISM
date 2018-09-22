@@ -1,7 +1,7 @@
 ﻿
-
-function inicio() {
-    console.log("asd");
+//Se llama al iniciar la aplicación
+function inicioEstaciones() {
+    
     var datos;
     var datosfiltrados = [];
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
@@ -53,8 +53,8 @@ function inicio() {
                     datosfiltrados[j] = entry;
                     j = j + 1;
                 });
-
                 tabla = $('#dataGrid').DataTable({
+                    
                     "data": datosfiltrados,
                     "columns":
                     [
@@ -69,13 +69,34 @@ function inicio() {
                         },
                         {
                             "data": "indsinop"
+                        },
+                        {
+                            "defaultContent": `<button onclick='prueba(this.parentElement.parentElement);'>Info</button>`
                         }
-                    ]
+                    ],
+                    
                 });
 
-            })
+                
 
-        });
+               
+
+            }); //Fin de la segunda petición AJAX
+            
+            
+
+        }); //Fin de la primera petición AJAX
     }
+
+    
 }
 
+
+
+function prueba(e) {
+    console.log(e);
+}
+
+function prueba2() {
+    console.log('uwu');
+}

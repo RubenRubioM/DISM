@@ -9,11 +9,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
 
-    <!--Llamadas para las hojas de estilo de bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <!--JQUERY -->
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <!--JQUERY MOBILE -->
@@ -23,16 +19,21 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[AqphJZdvgCLdhp_ajUuuROok1O3_jHlHE0_FLN-o1STbqzYnTeGjchdE-0Nwp41N]' async defer></script>
+
     <script type="text/javascript" src="cordova.js"></script>
 
     <script type="text/javascript" src="scripts/estaciones.js"></script>
+    <script type="text/javascript" src="scripts/ciudades.js"></script>
 
 
 
 
     <title>Practica1</title>
+
+
 </head>
-<body onload="inicio();">
+<body onload="inicioEstaciones(); inicioCiudades();">
 
 
     <div data-role="page">
@@ -40,12 +41,13 @@
             <ul>
                 <li><a href="#" class="ui-btn-active">Inicio</a></li>
                 <li><a href="estaciones.html">Estaciones meteorológicas</a></li>
+                <li><a href="ciudades.html">Ciudades</a></li>
+
             </ul>
         </div><!-- /navbar -->
 
-        
     </div>
-    
+
 
 </body>
 </html>
