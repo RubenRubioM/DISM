@@ -21,46 +21,39 @@
     <script type="text/html" data-main="scripts/startup" src="lib/require.2.1.8.js" async>
     </script>
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
-    <script type='text/javascript'>
-        function GetMap() {
-            var map = new Microsoft.Maps.Map('#myMap', {
-                credentials: 'AqphJZdvgCLdhp_ajUuuROok1O3_jHlHE0_FLN-o1STbqzYnTeGjchdE-0Nwp41N',
-                center: new Microsoft.Maps.Location(51.50632, -0.12714),
-                mapTypeId: Microsoft.Maps.MapTypeId.aerial,
-                zoom: 10
-            });
-
-
-        }
-    </script>
+    
 
     <script type="text/javascript" src="cordova.js"></script>
 
     <script type="text/javascript" src="scripts/estaciones.js"></script>
     <script type="text/javascript" src="scripts/ciudades.js"></script>
+    <script type="text/javascript" src="scripts/mapaEstaciones.js"></script>
     <script type="text/javascript" src="scripts/mapaEmergente.js"></script>
+    <script type="text/javascript" src="scripts/Datos.js"></script>
+
 
     <title>Practica1</title>
 
 
 </head>
 <body>
-
-    
     <div data-role="page">
         <div data-role="navbar">
             <ul>
                 <li><a href="#" class="ui-btn-active">Inicio</a></li>
                 <li><a href="estaciones.html">Estaciones meteorológicas</a></li>
                 <li><a href="ciudades.html">Ciudades</a></li>
+                <li><a href="mapaEstaciones.html">Mapa Estaciones</a></li>
+                <li><a href="datos.html">Datos</a></li>
+
             </ul>
         </div><!-- /navbar -->
 
-        <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
+
+        <div data-role="footer">
+            <h4>DISM 2018-2019</h4>
+        </div>
     </div>
-        
-
-
 
 </body>
 </html>

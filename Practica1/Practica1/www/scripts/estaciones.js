@@ -8,7 +8,6 @@ function inicioEstaciones() {
     console.log("Inicia estaciones meteorologicas...");
 
     var datos;
-    var datosfiltrados = [];
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
     var settings = {
         "async": true,
@@ -33,7 +32,7 @@ function inicioEstaciones() {
  
             Con lo cual volveremos a hacer otra petición al valor "datos"
         */
-        var j = 0;
+        
 
         $.ajax(response.datos).done((response) => {
             /*
@@ -50,15 +49,11 @@ function inicioEstaciones() {
             */
             datos = JSON.parse(response);
 
-            datos.forEach(function (entry) {
-                datosfiltrados[j] = entry;
-                j = j + 1;
-            });
-            var i = 0;
+            
             
             tabla = $('#dataGrid').DataTable({
 
-                "data": datosfiltrados,
+                "data": datos,
                 "columns":
                 [
                     {
@@ -71,7 +66,7 @@ function inicioEstaciones() {
                         "data": "longitud"
                     },
                     {
-                        "data": "indsinop"
+                        "data": "indicativo"
                     },
                     {
                         "defaultContent": `<button name="info" onclick='clickInfo(this);'>Info</button>`
