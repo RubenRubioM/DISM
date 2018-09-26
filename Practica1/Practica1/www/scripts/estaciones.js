@@ -2,7 +2,7 @@ $(document).on("pagecreate", "#estaciones", function (event) {
     inicioEstaciones();
 });
 
-//Se llama al iniciar la aplicación
+
 function inicioEstaciones() {
 
     console.log("Inicia estaciones meteorologicas...");
@@ -20,78 +20,75 @@ function inicioEstaciones() {
         }
     }
 
-    InicializarGrid();
+    $.ajax(settings).done(function (response) {
 
-    function InicializarGrid() {
+        /*
+            Esta primera peticion ajax nos devuelve este body
+            {
+              "descripcion": "exito",
+              "estado": 200,
+              "datos": "https://opendata.aemet.es/opendata/sh/651d566d",
+              "metadatos": "https://opendata.aemet.es/opendata/sh/0556af7a"
+            }
+ 
+            Con lo cual volveremos a hacer otra petición al valor "datos"
+        */
+        var j = 0;
 
-        $.ajax(settings).done(function (response) {
-
+        $.ajax(response.datos).done((response) => {
             /*
-                Esta primera peticion ajax nos devuelve este body
-                {
-                  "descripcion": "exito",
-                  "estado": 200,
-                  "datos": "https://opendata.aemet.es/opendata/sh/651d566d",
-                  "metadatos": "https://opendata.aemet.es/opendata/sh/0556af7a"
+                Esta segunda peticion nos devuelve este body
+                [ {
+                  "latitud" : "431825N",
+                  "provincia" : "A CORUÑA",
+                  "altitud" : "98",
+                  "indicativo" : "1387E",
+                  "nombre" : "A CORUÑA AEROPUERTO",
+                  "indsinop" : "08002",
+                  "longitud" : "082219W"
                 }
-    
-                Con lo cual volveremos a hacer otra petición al valor "datos"
             */
-            var j = 0;
+            datos = JSON.parse(response);
 
-            $.ajax(response.datos).done((response) => {
-                /*
-                    Esta segunda peticion nos devuelve este body
-                    [ {
-                      "latitud" : "431825N",
-                      "provincia" : "A CORUÑA",
-                      "altitud" : "98",
-                      "indicativo" : "1387E",
-                      "nombre" : "A CORUÑA AEROPUERTO",
-                      "indsinop" : "08002",
-                      "longitud" : "082219W"
+            datos.forEach(function (entry) {
+                datosfiltrados[j] = entry;
+                j = j + 1;
+            });
+            var i = 0;
+            
+            tabla = $('#dataGrid').DataTable({
+
+                "data": datosfiltrados,
+                "columns":
+                [
+                    {
+                        "data": "nombre"
+                    },
+                    {
+                        "data": "latitud"
+                    },
+                    {
+                        "data": "longitud"
+                    },
+                    {
+                        "data": "indsinop"
+                    },
+                    {
+                        "defaultContent": `<button name="info" onclick='clickInfo(this);'>Info</button>`
                     }
-                */
-                datos = JSON.parse(response);
-
-                datos.forEach(function (entry) {
-                    datosfiltrados[j] = entry;
-                    j = j + 1;
-                });
-                tabla = $('#dataGrid').DataTable({
-                    
-                    "data": datosfiltrados,
-                    "columns":
-                    [
-                        {
-                            "data": "nombre"
-                        },
-                        {
-                            "data": "latitud"
-                        },
-                        {
-                            "data": "longitud"
-                        },
-                        {
-                            "data": "indsinop"
-                        },
-                        {
-                            "defaultContent": `<button name="info" onclick='clickInfo(this);'>Info</button>`
-                        }
-                    ],
-                    
-                });
-
+                ],
                 
+            });
 
-               
 
-            }); //Fin de la segunda petición AJAX
-            
-            
 
-        }); //Fin de la primera petición AJAX
-    }
+
+
+        }); //Fin de la segunda petición AJAX
+
+
+
+    }); //Fin de la primera petición AJAX
 
     
 }
@@ -100,7 +97,9 @@ function inicioEstaciones() {
 
 function clickInfo(e) {
     console.log("Latitud: "+e.parentNode.parentNode.children[1].innerHTML);
-    console.log("Longitud: "+e.parentNode.parentNode.children[2].innerHTML);
+    console.log("Longitud: " + e.parentNode.parentNode.children[2].innerHTML);
+
+    document.location.href = "mapaEmergente.html?" + e.parentNode.parentNode.children[1].innerHTML + "&" + e.parentNode.parentNode.children[2].innerHTML;
 
 }
 

@@ -18,45 +18,40 @@ function inicioCiudades() {
         }
     }
 
-    InicializarGrid();
+    $.ajax(settings).done(function (response) {
 
-    function InicializarGrid() {
 
-        $.ajax(settings).done(function (response) {
+        var j = 0;
 
-           
-            var j = 0;
+        datos = JSON.parse(response);
 
-            datos = JSON.parse(response);
+        datos.forEach(function (entry) {
+            if (entry.num_hab > 50000) {
+                datosfiltrados[j] = entry;
+                j = j + 1;
+            }
 
-            datos.forEach(function (entry) {
-                if (entry.num_hab > 50000) {
-                    datosfiltrados[j] = entry;
-                    j = j + 1;
+        });
+        tabla = $('#dataGrid2').DataTable({
+
+            "data": datosfiltrados,
+            "columns":
+            [
+                {
+                    "data": "nombre"
+                },
+                {
+                    "data": "latitud"
+                },
+                {
+                    "data": "longitud"
                 }
-                
-            });
-            tabla = $('#dataGrid2').DataTable({
 
-                "data": datosfiltrados,
-                "columns":
-                [
-                    {
-                        "data": "nombre"
-                    },
-                    {
-                        "data": "latitud"
-                    },
-                    {
-                        "data": "longitud"
-                    }
-                    
-                ],
+            ],
 
-            });
+        });
 
 
 
-        }); //Fin de la primera petición AJAX
-    }
+    }); //Fin de la primera petición AJAX
 }
