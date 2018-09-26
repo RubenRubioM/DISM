@@ -1,4 +1,8 @@
-﻿
+$(document).on("pagecreate", "#ciudades", function (event) {
+    inicioCiudades();
+});
+
+
 function inicioCiudades() {
     
     var datos;
@@ -13,9 +17,9 @@ function inicioCiudades() {
             "cache-control": "no-cache"
         }
     }
-    $(document).on("pagecreate", "#ciudades", function (event) {
-        InicializarGrid();
-    });
+
+    InicializarGrid();
+
     function InicializarGrid() {
 
         $.ajax(settings).done(function (response) {
@@ -32,7 +36,7 @@ function inicioCiudades() {
                 }
                 
             });
-            tabla = $('#dataGrid').DataTable({
+            tabla = $('#dataGrid2').DataTable({
 
                 "data": datosfiltrados,
                 "columns":
