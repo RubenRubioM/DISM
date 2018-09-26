@@ -1,7 +1,12 @@
-﻿
+$(document).on("pagecreate", "#estaciones", function (event) {
+    inicioEstaciones();
+});
+
 //Se llama al iniciar la aplicación
 function inicioEstaciones() {
-    
+
+    console.log("Inicia estaciones meteorologicas...");
+
     var datos;
     var datosfiltrados = [];
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
@@ -14,9 +19,9 @@ function inicioEstaciones() {
             "cache-control": "no-cache"
         }
     }
-    $(document).on("pagecreate", "#estaciones", function (event) {
-        InicializarGrid();
-    });
+
+    InicializarGrid();
+
     function InicializarGrid() {
 
         $.ajax(settings).done(function (response) {
@@ -71,7 +76,7 @@ function inicioEstaciones() {
                             "data": "indsinop"
                         },
                         {
-                            "defaultContent": `<button onclick='prueba(this.parentElement.parentElement);'>Info</button>`
+                            "defaultContent": `<button name="info" onclick='clickInfo(this);'>Info</button>`
                         }
                     ],
                     
@@ -93,10 +98,9 @@ function inicioEstaciones() {
 
 
 
-function prueba(e) {
-    console.log(e);
+function clickInfo(e) {
+    console.log("Latitud: "+e.parentNode.parentNode.children[1].innerHTML);
+    console.log("Longitud: "+e.parentNode.parentNode.children[2].innerHTML);
+
 }
 
-function prueba2() {
-    console.log('uwu');
-}
