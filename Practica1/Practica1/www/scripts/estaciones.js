@@ -93,8 +93,43 @@ function inicioEstaciones() {
 function clickInfo(e) {
     console.log("Latitud: "+e.parentNode.parentNode.children[1].innerHTML);
     console.log("Longitud: " + e.parentNode.parentNode.children[2].innerHTML);
+    document.getElementById('mensaje-modal').style.display = 'block';
+    latitud = e.parentNode.parentNode.children[1].innerHTML;
+    longitud = e.parentNode.parentNode.children[2].innerHTML;
 
-    document.location.href = "mapaEmergente.html?" + e.parentNode.parentNode.children[1].innerHTML + "&" + e.parentNode.parentNode.children[2].innerHTML;
+    
 
+    var map = new Microsoft.Maps.Map('#myMap', {
+        credentials: 'AqphJZdvgCLdhp_ajUuuROok1O3_jHlHE0_FLN-o1STbqzYnTeGjchdE-0Nwp41N'
+    });
+
+    var loc = new Microsoft.Maps.Location(hexToDec(latitud),hexToDec(longitud));
+    var pushpin = new Microsoft.Maps.Pushpin(loc, {
+        icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png'
+        
+    });
+    map.entities.push(pushpin);
+
+    
+    map.setView({ center: loc, zoom: 6 });
+
+
+    
+
+}
+
+function hexToDec(hex) {
+
+    var segundos = ((hex.charAt(4) + hex.charAt(5)) / 60).toString().split(".")[1];
+    var minutos = (((hex.charAt(2) + hex.charAt(3)) + "." + segundos) / 60).toString().split(".")[1];
+    var decimal = hex.charAt(0) + hex.charAt(1) + "." + minutos;
+    if (hex.charAt(6) == "S" || hex.charAt(6)=="W") {
+        decimal *= -1;
+    }
+
+    return decimal;
+}
+function cerrarModal() {
+    document.getElementById('mensaje-modal').style.display = 'none';
 }
 

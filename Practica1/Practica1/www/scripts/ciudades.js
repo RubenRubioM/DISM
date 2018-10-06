@@ -45,6 +45,9 @@ function inicioCiudades() {
                 },
                 {
                     "data": "longitud"
+                },
+                {
+                    "data": "num_hab"
                 }
 
             ],

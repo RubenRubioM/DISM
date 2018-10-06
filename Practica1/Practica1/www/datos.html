@@ -4,25 +4,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 </head>
-<body>
+<body onload="busqueda();">
     <div data-role="page" id="datos">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="estaciones.html">Estaciones meteorológicas</a></li>
-                <li><a href="ciudades.html">Ciudades</a></li>
-                <li><a href="mapaEstaciones.html">Mapa Estaciones</a></li>
-                <li><a href="datos.html" class="ui-btn-active">Datos</a></li>
 
-            </ul>
-        </div><!-- /navbar -->
 
-        
+
         <h2 style="text-align:center">Introduzca un IDEMA para buscar</h2>
-        <p onkeyup="busqueda();" contenteditable id="idema"></p>
-       
-        
-            
+        <form action="datos.html" method="get">
+            <label for="text-basic"></label>
+            <input name="idema" id="text-basic" value="" type="text">
+
+            <input onsubmit="busqueda();" type="submit" name="enviar" value="Buscar" />
+        </form>
+
+
+
 
         <div role="main" class="ui-content">
             <table id="dataGrid3" class="table table-striped table-bordered" style="width:100%">
@@ -37,9 +33,21 @@
             </table>
         </div>
 
+        <div data-role="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="estaciones.html">Estaciones meteorológicas</a></li>
+                <li><a href="ciudades.html">Ciudades</a></li>
+                <li><a href="mapaEstaciones.html">Mapa Estaciones</a></li>
+                <li><a href="datos.html" class="ui-btn-active">Datos</a></li>
+
+            </ul>
+        </div><!-- /navbar -->
         <div data-role="footer">
             <h4>DISM 2018-2019</h4>
         </div>
+
+
     </div>
 </body>
 </html>

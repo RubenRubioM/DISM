@@ -1,22 +1,29 @@
-﻿function busqueda() {
+﻿$(document).on("pagecreate", "#datos", function (event) {
+    busqueda();
+});
+
+function busqueda() {
     
     var datos;
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
-    var idema = document.getElementById('idema').innerHTML;
+    var idema = document.location.href;
+    
+    
     
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://opendata.aemet.es/opendata/api/observacion/convencional/datos/estacion/" + idema + "?api_key=" + key,
+        "url": "https://opendata.aemet.es/opendata/api/observacion/convencional/datos/estacion/todas?api_key="+key,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache"
         }
     }
 
+    
     //TODO 
     //Por algun motivo la peticion ajax funciona siempre menos cuando el resultado es correcto
-    $.ajax(settings).done( function (response) {
+    $.ajax(settings).done(function (response) {
         
         /*  RESPUESTA
             {
@@ -28,7 +35,6 @@
         */
         
         //200 -> IDEMA correcto
-        console.log(response.estado);
         console.log(response);
         if (response.estado == 200) {
             console.log('hay datos');
