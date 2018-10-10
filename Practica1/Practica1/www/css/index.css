@@ -104,10 +104,7 @@ h1 {
     text-align:center;
 }
 
-#footer>a{
-    margin: 0 auto;
-    text-align:center;
-}
+
 
 #mensaje-modal {
     display: none; /* Hidden by default */
@@ -126,11 +123,37 @@ h1 {
 
     #mensaje-modal > div {
         border: 1px solid white;
-        background-color: rgba(255,255,255,0.8);
+        background-color: rgba(255,255,255,0.95);
         margin: auto;
         padding: 20px;
         border: 1px solid #888;
-        border-radius: 50px;
+        border-radius: 20px;
         width: 80%;
         color: #000;
     }
+
+.footer-acercade{
+    margin: 0 auto !important;
+    text-align:center;
+
+}
+
+    .footer-acercade > a {
+        text-decoration: none;
+        color: black;
+    }
+
+#contenedor-index > h1{
+    display:inline-block;
+    text-align:center;
+}
+
+#contenedor-index >figure{
+    text-align:center;
+}
+#indice-menu > li > a {
+    font-size: 0.8em;
+    color: #000;
+    text-decoration: none;
+    text-align: left;
+}

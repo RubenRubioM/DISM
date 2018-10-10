@@ -2,6 +2,7 @@
     inicioMapaEstaciones();
 });
 
+var infobox;
 function inicioMapaEstaciones() {
 
     var datos;
@@ -61,7 +62,12 @@ function inicioMapaEstaciones() {
             datos = JSON.parse(response);
 
             
-            
+            //Create an infobox at the center of the map but don't show it.
+            infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+                visible: false
+            });
+
+            infobox.setMap(map);
 
             datos.forEach(function (entry) {
 
@@ -73,6 +79,13 @@ function inicioMapaEstaciones() {
                     icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
                     text: `${i}`
                 });
+
+                pushpin.metadata = {
+                    title: `${entry.nombre}`,
+                    description: `${entry.altitud}`
+                }
+
+                Microsoft.Maps.Events.addHandler(pushpin, 'click', pushpinClicked);
                 map.entities.push(pushpin);
                
                 i++;
@@ -89,11 +102,26 @@ function inicioMapaEstaciones() {
     }); //Fin de la primera petición AJAX
 }
 
+function pushpinClicked(e) {
+    console.log(e.target.getLocation());
+    //Make sure the infobox has metadata to display.
+    if (e.target.metadata) {
+        //Set the infobox options with the metadata of the pushpin.
+        infobox.setOptions({
+            location: e.target.getLocation(),
+            title: e.target.metadata.title,
+            description: `Altitdu: ${e.target.metadata.description}`,
+            visible: true
+        });
+    }
+}
+
 function hexToDec(hex) {
 
     var segundos = ((hex.charAt(4) + hex.charAt(5)) / 60).toString().split(".")[1];
     var minutos = (((hex.charAt(2) + hex.charAt(3)) + "." + segundos) / 60).toString().split(".")[1];
     var decimal = hex.charAt(0) + hex.charAt(1) + "." + minutos;
+
     if (hex.charAt(6) == "S" || hex.charAt(6) == "W") {
         decimal *= -1;
     }
