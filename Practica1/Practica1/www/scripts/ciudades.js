@@ -22,7 +22,6 @@ function inicioCiudades() {
 
 
         var j = 0;
-
         datos = JSON.parse(response);
 
         datos.forEach(function (entry) {
@@ -35,6 +34,7 @@ function inicioCiudades() {
         tabla = $('#dataGrid2').DataTable({
 
             "data": datosfiltrados,
+            responsive:true,
             "columns":
             [
                 {

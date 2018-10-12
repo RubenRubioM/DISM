@@ -1,4 +1,4 @@
-﻿var tabla;
+﻿var tabla2;
 $(document).on("pagecreate", "#datos", function (event) {
     todasLasEstaciones();
 });
@@ -46,11 +46,16 @@ function todasLasEstaciones() {
             */
             datos = JSON.parse(response);
 
-
-
             tabla = $('#dataGrid3').DataTable({
                 
                 "data": datos,
+                responsive: false,
+                retrieve: true,
+                deferRender: true,
+                scrollY: 500,
+                scrollX: true,
+                scrollCollapse: true,
+                scroller: true,
                 "columns":
                 [
                     {
@@ -60,7 +65,7 @@ function todasLasEstaciones() {
                         "data": "indicativo"
                     },
                     {
-                        "defaultContent": `<button name="info" onclick='busqueda(this);'>Ultimos datos</button>`
+                        "defaultContent": `<button class="ui-btn ui-corner-all" name="info" onclick='busqueda(this);'>Ultimos datos</button>`
                     }
                 ],
 
@@ -79,7 +84,7 @@ function todasLasEstaciones() {
 
 }
 
-
+//Funcion llamada al dar click en el boton
 function busqueda(e) {
     document.getElementById('mensaje-modal').style.display = 'block';
     var idema = e.parentNode.parentNode.children[1].innerHTML;
@@ -101,9 +106,7 @@ function busqueda(e) {
         }
     }
 
-    
-    //TODO 
-    //Por algun motivo la peticion ajax funciona siempre menos cuando el resultado es correcto
+
     $.ajax(settings).fail(function (response) {
 
         console.log(JSON.parse(response.responseText).datos);
@@ -149,9 +152,15 @@ function busqueda(e) {
                     inso: 60
                 }
             */
-            tabla.clear();
-            tabla = $('#dataGrid4').DataTable({
-                "retrieve": true,
+
+            tabla2 = $('#dataGrid4').DataTable({
+                responsive: false,
+                retrieve: true,
+                deferRender: true,
+                scrollY: 500,
+                scrollX: true,
+                scrollCollapse: true,
+                scroller: true,
                 "data": datos,
                 "columns":
                 [
@@ -182,3 +191,7 @@ function busqueda(e) {
     
 }
 
+function cerrarModalDatos() {
+    document.getElementById('mensaje-modal').style.display = 'none';
+    tabla2.destroy();
+}
