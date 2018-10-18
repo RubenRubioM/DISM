@@ -4,6 +4,9 @@ $(document).on("pagecreate", "#datos", function (event) {
 });
 
 function todasLasEstaciones() {
+
+
+
     var datos;
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
     var settings = {
@@ -94,8 +97,6 @@ function busqueda(e) {
 
     var datos;
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
-    
-    
     settings = {
         "async": true,
         "crossDomain": true,
@@ -123,7 +124,6 @@ function busqueda(e) {
 
         $.ajax(JSON.parse(response.responseText).datos).done(function (response) {
 
-            console.log("entra");
             datos = JSON.parse(response);
             /*  RESPUESTA
                 {

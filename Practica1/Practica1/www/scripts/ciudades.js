@@ -2,6 +2,18 @@ $(document).on("pagecreate", "#ciudades", function (event) {
     inicioCiudades();
 });
 
+$('#main').live('pagecreate', function (event) {
+    $.ajax({
+        beforeSend: function () { $.mobile.showPageLoadingMsg(); }, //Show spinner
+        complete: function () { $.mobile.hidePageLoadingMsg(); }, //Hide spinner
+        url: //url
+        dataType: 'json',
+        headers: //headers
+        success: function(data) {
+            //...
+        }
+    });
+});
 
 function inicioCiudades() {
     
