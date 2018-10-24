@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link href="css/index.css" rel="stylesheet" />
+
+
+    <!--JQUERY -->
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <!--JQUERY MOBILE -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!--JQUERY, Datatabla -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <!-- El atributo "async" es necesario para que RequireJS funcione en una aplicación de
+    Windows. -->
+    <script type="text/html" data-main="scripts/startup" src="lib/require.2.1.8.js" async></script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+    <!--Links a javascripts-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/estaciones.js"></script>
+    <script type="text/javascript" src="scripts/ciudades.js"></script>
+    <script type="text/javascript" src="scripts/mapaEstaciones.js"></script>
+    <script type="text/javascript" src="scripts/Datos.js"></script>
+
+
+    <title>Practica1</title>
+
+
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" class="ui-btn-active">Inicio</a></li>
+                <li><a href="estaciones.html">Estaciones meteorológicas</a></li>
+                <li><a href="ciudades.html">Ciudades</a></li>
+                <li><a href="mapaEstaciones.html">Mapa Estaciones</a></li>
+                <li><a href="datos.html">Datos</a></li>
+
+            </ul>
+        </div><!-- /navbar -->
+        <div data-role="content" id="contenedor-index">
+            <h1>Bienvenido a la aplicación de AEMET</h1>
+            <figure>
+
+                <img src="images/aemet.gif" alt="aemet logo" width="100" height="100" />
+            </figure>
+            <p>En esta aplicación podrá encontrar la siguiente información: </p>
+            <ul id="indice-menu">
+                <li><a href="estaciones.html">Un listado con las estaciones meteorológicas de España</a></li>
+                <li><a href="ciudades.html">Información sobre las ciudades españolas con mas de 50.000 habitantes</a></li>
+                <li><a href="mapaEstaciones.html">Un mapa con todas las estaciones meteorológicas</a></li>
+                <li><a href="datos.html">Información del tiempo en las ultimas 24h de cada estación meteorológica</a></li>
+            </ul>
+        </div>
+
+        <!--Footer-->
+        <div data-role="footer" class="footer-acercade" style="margin:0 auto !important; text-align:center;">
+            <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="">DISM 2018-2019</a>  
+        </div>
+        <!--Popup con los datos del alumno-->
+        <div data-role="popup" id="popupMenu" data-theme="b">
+            <div id="acercade-container">
+                <figure>
+                    <img src="images/perfil placeholder.jpg" alt="Foto ruben" width="100" height="100" />
+                </figure>
+                <p>Nombre: Ruben Rubio Martinez</p>
+                <p>DNI: 20084606-V</p>
+                <p>Email: rrm73@alu.ua.es</p>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

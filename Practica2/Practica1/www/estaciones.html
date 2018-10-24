@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+
+    
+
+    <title>Estaciones meteorológicas</title>
+</head>
+
+<body>
+    <div data-role="page" id="estaciones">
+
+
+
+        <div data-role="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#" class="ui-btn-active">Estaciones meteorológicas</a></li>
+                <li><a href="ciudades.html">Ciudades</a></li>
+                <li><a href="mapaEstaciones.html">Mapa Estaciones</a></li>
+                <li><a href="datos.html">Datos</a></li>
+
+            </ul>
+        </div><!-- /navbar -->
+        <div role="main" class="ui-content">
+            <table id="dataGrid" class="display responsive nowrap table table-striped table-bordered " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Latidud</th>
+                        <th>Longitud</th>
+                        <th>Idema</th>
+                        <th>Mas info</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div style="display:none;" id="mensaje-modal" >
+            <div>
+                <h2>Localización de <output id="outputMapaEmergente"></output></h2>
+                <div id="myMap" style="margin:0 auto;width:50vw;height:50vw;text-align:center;"></div>
+                <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back" onclick="cerrarModal();">Cerrar</button>
+            </div>
+
+        </div>
+
+
+    </div> <!--Fin del data-role="page"-->
+    
+</body>
+</html>

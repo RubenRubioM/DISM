@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Datos</title>
+</head>
+<body onload="busqueda();">
+    <div data-role="page" id="datos">
+
+        <div data-role="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="estaciones.html">Estaciones meteorológicas</a></li>
+                <li><a href="ciudades.html">Ciudades</a></li>
+                <li><a href="mapaEstaciones.html">Mapa Estaciones</a></li>
+                <li><a href="datos.html" class="ui-btn-active">Datos</a></li>
+            </ul>
+        </div><!-- /navbar -->
+        <div role="main" class="ui-content">
+            <table id="dataGrid3" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Idema</th>
+                        <th>Ultimas 24h</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div style="display:none;" id="mensaje-modal">
+            <div>
+                <h3>Ultimas 24h de <output id="idemaOutput"></output> (<output id="nombreOutput"></output>)</h3>
+                <table id="dataGrid4" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Idema</th>
+                            <th>Ubicacion</th>
+                            <th>Fecha-hora</th>
+                            <th>Temperatura</th>
+                        </tr>
+                    </thead>
+                </table>
+                <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back" onclick="cerrarModalDatos();">Cerrar</button>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+     "android": {
+      "release": {
+        "keystore": "D:\\Escritorio\\DISM\\Practica1\\dism.keystore",
+        "storePassword": "123456789",
+        "alias": "DISM",
+        "password": "123456789",
+        "keystoreType": ""
+      }
+     }
+ }
