@@ -2,28 +2,15 @@ $(document).on("pagecreate", "#ciudades", function (event) {
     inicioCiudades();
 });
 
-$('#main').live('pagecreate', function (event) {
-    $.ajax({
-        beforeSend: function () { $.mobile.showPageLoadingMsg(); }, //Show spinner
-        complete: function () { $.mobile.hidePageLoadingMsg(); }, //Hide spinner
-        url: //url
-        dataType: 'json',
-        headers: //headers
-        success: function(data) {
-            //...
-        }
-    });
-});
-
 function inicioCiudades() {
     
     var datos;
     var datosfiltrados = [];
-    var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
+   
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://opendata.aemet.es/opendata/api/maestro/municipios?api_key=" + key,
+        "url": "http://localhost:8080/municipios",
         "method": "GET",
         "headers": {
             "cache-control": "no-cache"
@@ -34,18 +21,18 @@ function inicioCiudades() {
 
 
         var j = 0;
-        datos = JSON.parse(response);
+        datos = response;
 
-        datos.forEach(function (entry) {
-            if (entry.num_hab > 50000) {
-                datosfiltrados[j] = entry;
-                j = j + 1;
-            }
+        //datos.forEach(function (entry) {
+        //    if (entry.num_hab > 50000) {
+        //        datosfiltrados[j] = entry;
+        //        j = j + 1;
+        //    }
 
-        });
+        //});
         tabla = $('#dataGrid2').DataTable({
 
-            "data": datosfiltrados,
+            "data": datos,
             responsive:true,
             "columns":
             [
@@ -53,10 +40,10 @@ function inicioCiudades() {
                     "data": "nombre"
                 },
                 {
-                    "data": "latitud"
+                    "data": "latitud_dec"
                 },
                 {
-                    "data": "longitud"
+                    "data": "longitud_dec"
                 },
                 {
                     "data": "num_hab"

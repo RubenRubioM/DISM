@@ -1,0 +1,48 @@
+LastSessions<|||>1<|||>Unnamed
+LastActiveSession<|||>1<|||>Unnamed
+ColWidths_connform.ListSessions<|||>1<|||>163,50,50,50,50,50,53
+ColsVisible_connform.ListSessions<|||>1<|||>0
+ColPositions_connform.ListSessions<|||>1<|||>0,1,2,3,4,5,6
+ColSort_connform.ListSessions<|||>1<|||>0,0
+SQLFile0<|||>1<|||>D:\Escritorio\DISM\usuariosP2.sql
+ExportSQL_DataHow<|||>3<|||>2
+ExportSQL_Filenames<|||>1<|||>D:\Escritorio\DISM\datos.sql<{{{><}}}>
+Servers\Unnamed\SessionCreated<|||>1<|||>2018-11-04 08:40:40
+Servers\Unnamed\Host<|||>1<|||>127.0.0.1
+Servers\Unnamed\WindowsAuth<|||>3<|||>0
+Servers\Unnamed\User<|||>1<|||>root
+Servers\Unnamed\Password<|||>1<|||>737070751
+Servers\Unnamed\LoginPrompt<|||>3<|||>0
+Servers\Unnamed\Port<|||>1<|||>3311
+Servers\Unnamed\NetType<|||>3<|||>0
+Servers\Unnamed\Compressed<|||>3<|||>0
+Servers\Unnamed\LocalTimeZone<|||>3<|||>0
+Servers\Unnamed\QueryTimeout<|||>3<|||>0
+Servers\Unnamed\KeepAlive<|||>3<|||>0
+Servers\Unnamed\FullTableStatus<|||>3<|||>1
+Servers\Unnamed\Databases<|||>1<|||>
+Servers\Unnamed\Comment<|||>1<|||>
+Servers\Unnamed\StartupScriptFilename<|||>1<|||>
+Servers\Unnamed\SSHtunnelHost<|||>1<|||>
+Servers\Unnamed\SSHtunnelHostPort<|||>3<|||>0
+Servers\Unnamed\SSHtunnelUser<|||>1<|||>
+Servers\Unnamed\SSHtunnelPassword<|||>1<|||>7
+Servers\Unnamed\SSHtunnelTimeout<|||>3<|||>4
+Servers\Unnamed\SSHtunnelPrivateKey<|||>1<|||>
+Servers\Unnamed\SSHtunnelPort<|||>3<|||>3307
+Servers\Unnamed\SSL_Active<|||>3<|||>0
+Servers\Unnamed\SSL_Key<|||>1<|||>
+Servers\Unnamed\SSL_Cert<|||>1<|||>
+Servers\Unnamed\SSL_CA<|||>1<|||>
+Servers\Unnamed\SSL_Cipher<|||>1<|||>
+Servers\Unnamed\ServerVersionFull<|||>1<|||>5.0.67-community-nt - MySQL Community Edition (GPL)
+Servers\Unnamed\ConnectCount<|||>3<|||>2
+Servers\Unnamed\ServerVersion<|||>3<|||>50067
+Servers\Unnamed\LastConnect<|||>1<|||>2018-11-04 08:41:58
+Servers\Unnamed\QueryHistory\1<|||>1<|||>2018-11-04 09:16:07|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º32'54.450744\"","44004","ababuj-id44001","40.54845854","1372", "Ababuj","65","624401", "0","Ababuj","-0.80780117","id44001","-0º48'28.084212\"")
+Servers\Unnamed\QueryHistory\2<|||>1<|||>2018-11-04 09:17:47|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º32'54.450744\"","44004","ababuj-id44001","40.54845854","1372", "Ababuj","65281","624401", "0","Madrid","-0.90780117","id44001","-0º70'28.084212\"")
+Servers\Unnamed\QueryHistory\3<|||>1<|||>2018-11-04 09:19:30|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º54'58.824504\"","40004","Madrid-id40001","40.91634014","971", "Madrid","65281","674001", "0","Madrid","-0.90780117","id40001","-0º70'28.084212\"")
+Servers\Unnamed\QueryHistory\4<|||>1<|||>2018-11-04 09:44:37|dism|0|INSERT INTO estaciones(latitud,provincia,altitud,indicativo,nombre,indsinop,longitud)<{{{><}}}>VALUES ("431825N","A CORUÑA","98","1387E","A CORUÑA AEROPUERTO","08002","082219W")
+Servers\Unnamed\QueryHistory\5<|||>1<|||>2018-11-04 09:45:22|dism|0|INSERT INTO estaciones(latitud,provincia,altitud,indicativo,nombre,indsinop,longitud)<{{{><}}}>VALUES ("433123N","ASTURIAS","26","1207U","GIJÓN, CAMPUS","08014","053716W")
+Servers\Unnamed\QueryHistory\6<|||>1<|||>2018-11-04 10:10:19|dism|16|INSERT INTO observaciones (idema,lon,fint,prec,alt,vmax,vv,dv,lat,dmax,ubi,hr,tamin,ta,tamax,tpr,rviento)<{{{><}}}>VALUES ("0002I","0.871385","2018-11-03T10:00:00","0","32","13.4","6.3","311"," 40.95806","324","VANDELLÓS","48","12.6","13.7","13.7","2.9","250")
+Servers\Unnamed\QueryHistory\7<|||>1<|||>2018-11-04 10:17:17|dism|0|INSERT INTO observaciones (idema,lon,fint,prec,alt,vmax,vv,dv,lat,dmax,ubi,hr,tamin,ta,tamax,tpr,rviento)<{{{><}}}>VALUES ("1387E","0.871385","2018-11-03T10:00:00","0","32","13.4","6.3","311"," 40.95806","324","A Coruña","48","12.6","13.7","13.7","2.9","250")

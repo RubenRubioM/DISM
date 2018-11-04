@@ -6,11 +6,10 @@ var infobox;
 function inicioMapaEstaciones() {
 
     var datos;
-    var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones?api_key=" + key,
+        "url": "http://localhost:8080/estaciones",
         "method": "GET",
         "headers": {
             "cache-control": "no-cache"
@@ -22,22 +21,7 @@ function inicioMapaEstaciones() {
     });
 
     $.ajax(settings).done(function (response) {
-
         /*
-            Esta primera peticion ajax nos devuelve este body
-            {
-              "descripcion": "exito",
-              "estado": 200,
-              "datos": "https://opendata.aemet.es/opendata/sh/651d566d",
-              "metadatos": "https://opendata.aemet.es/opendata/sh/0556af7a"
-            }
- 
-            Con lo cual volveremos a hacer otra petición al valor "datos"
-        */
-
-
-        $.ajax(response.datos).done((response) => {
-            /*
                 Esta segunda peticion nos devuelve este body (ejemplo)
                 {
                   "latitud" : "431825N",  (array de 6)
@@ -56,46 +40,39 @@ function inicioMapaEstaciones() {
             */
 
 
-            
-            var i = 1;
 
-            datos = JSON.parse(response);
+        var i = 1;
 
-            
-            //Create an infobox at the center of the map but don't show it.
-            infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
-                visible: false
+        datos = response;
+
+
+        //Create an infobox at the center of the map but don't show it.
+        infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+            visible: false
+        });
+
+        infobox.setMap(map);
+
+        datos.forEach(function (entry) {
+
+            // Hay que pasar las coordenadas de grados a numeros, pero no se como se hace
+            var loc = new Microsoft.Maps.Location(hexToDec(entry.latitud), hexToDec(entry.longitud));
+            var pushpin = new Microsoft.Maps.Pushpin(loc, {
+                icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+                text: `${i}`
             });
 
-            infobox.setMap(map);
+            pushpin.metadata = {
+                title: `${entry.nombre}`,
+                description: `${entry.altitud}`
+            }
 
-            datos.forEach(function (entry) {
+            Microsoft.Maps.Events.addHandler(pushpin, 'click', pushpinClicked);
+            map.entities.push(pushpin);
 
-                // Hay que pasar las coordenadas de grados a numeros, pero no se como se hace
-                
-
-                var loc = new Microsoft.Maps.Location(hexToDec(entry.latitud), hexToDec(entry.longitud));
-                var pushpin = new Microsoft.Maps.Pushpin(loc, {
-                    icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
-                    text: `${i}`
-                });
-
-                pushpin.metadata = {
-                    title: `${entry.nombre}`,
-                    description: `${entry.altitud}`
-                }
-
-                Microsoft.Maps.Events.addHandler(pushpin, 'click', pushpinClicked);
-                map.entities.push(pushpin);
-               
-                i++;
-                map.setView({ center: loc, zoom: 5 });
-            })
-
-            
-
-            
-        }); //Fin de la segunda petición AJAX
+            i++;
+            map.setView({ center: loc, zoom: 4 });
+        })
 
 
 
