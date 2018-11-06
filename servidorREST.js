@@ -134,7 +134,13 @@ function insertarMunicipios(){
         
         datos.forEach(element => {
             if(i<10){
-                var sql = `INSERT INTO municipios(id_old, url, latitud_dec, altitud, capital, num_hab, zona_comercal, destacada, nombre, longitud_dec, id) VALUES ("${element.id_old}","${element.url}","${element.latitud_dec}","${element.altitud}","${element.capital}","${element.num_hab}","${element.zona_comarcal}","${element.destacada}","${element.nombre}","${element.longitud_dec}","${element.id}")`;
+                let splited = element.latitud.split('"');
+                let latitud = splited[0].concat('\\"');
+                let splited2 = element.longitud.split('"');
+                let longitud = splited2[0].concat('\\"');
+                
+                console.log(latitud);
+                var sql = `INSERT INTO municipios(latitud,id_old, url, latitud_dec, altitud, capital, num_hab, zona_comercal, destacada, nombre, longitud_dec, id,longitud) VALUES ("${latitud}", "${element.id_old}","${element.url}","${element.latitud_dec}","${element.altitud}","${element.capital}","${element.num_hab}","${element.zona_comarcal}","${element.destacada}","${element.nombre}","${element.longitud_dec}","${element.id}","${longitud}")`;
 
                 connection.query(sql, function(err, rows) {
                     if (err) {
