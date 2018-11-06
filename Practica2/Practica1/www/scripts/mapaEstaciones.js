@@ -4,7 +4,7 @@
 
 var infobox;
 function inicioMapaEstaciones() {
-
+    var clave = "1234";
     var datos;
     var settings = {
         "async": true,
@@ -12,7 +12,8 @@ function inicioMapaEstaciones() {
         "url": "http://localhost:8080/estaciones",
         "method": "GET",
         "headers": {
-            "cache-control": "no-cache"
+            "cache-control": "no-cache",
+            "token": clave
         }
     }
 

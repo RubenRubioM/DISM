@@ -6,7 +6,7 @@ $(document).on("pagecreate", "#datos", function (event) {
 function todasLasEstaciones() {
 
 
-
+    var clave ="1234";
     var datos;
     var settings = {
         "async": true,
@@ -14,7 +14,8 @@ function todasLasEstaciones() {
         "url": "http://localhost:8080/estaciones",
         "method": "GET",
         "headers": {
-            "cache-control": "no-cache"
+            "cache-control": "no-cache",
+            "token": clave
         }
     }
 
@@ -79,14 +80,16 @@ function busqueda(e) {
     document.getElementById('nombreOutput').innerHTML = nombre;
     console.log(idema);
     var datos;
-   
+
+    var clave = "1234";
     settings = {
         "async": true,
         "crossDomain": true,
         "url": "http://localhost:8080/observaciones/"+idema,
         "method": "GET",
         "headers": {
-            "cache-control": "no-cache"
+            "cache-control": "no-cache",
+            "token": clave
         }
     }
 

@@ -6,14 +6,15 @@ function inicioCiudades() {
     
     var datos;
     var datosfiltrados = [];
-   
+    var clave = "1234";
     var settings = {
         "async": true,
         "crossDomain": true,
         "url": "http://localhost:8080/municipios",
         "method": "GET",
         "headers": {
-            "cache-control": "no-cache"
+            "cache-control": "no-cache",
+            "token": clave
         }
     }
 

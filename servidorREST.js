@@ -15,8 +15,23 @@ var connection = mysql.createConnection({
     port : '3311',
     database : 'dism'
 });
+
+var allowCrossTokenHeader = (req,res,next)=>{
+	res.header("Acces-Control-Allow-Headers","token");
+	return next();
+};
+
+var auth = (req,res,next)=>{
+	if(req.headers.token === "1234"){
+		return next();
+	}else{
+        res.send("Consigue una key para acceder a la API");
+		return next(new Error("No dispones de una key apropiada"));
+	}
+};
+
 //Ejemplo: GET http://localhost:8080/municipios
-app.get('/municipios', function(req, resp) {
+app.get('/municipios',auth, function(req, resp) {
     connection.query('select * from municipios', function(err, rows) {
         if (err) {
             console.log('Error en /municipios '+err);
@@ -34,7 +49,7 @@ app.get('/municipios', function(req, resp) {
 });
 
 //Ejemplo: GET http://localhost:8080/municipios/:capital
-app.get('/municipios/:capital', function(req, resp) {
+app.get('/municipios/:capital',auth, function(req, resp) {
     connection.query(`select * from municipios where capital="${req.params.capital}"`, function(err, rows) {
         if (err) {
             console.log('Error en /municipios '+err);
@@ -52,7 +67,7 @@ app.get('/municipios/:capital', function(req, resp) {
 });
 
 //Ejemplo: GET http://localhost:8080/estaciones
-app.get('/estaciones', function(req, resp) {
+app.get('/estaciones',auth, function(req, resp) {
     connection.query('select * from estaciones', function(err, rows) {
         if (err) {
             console.log('Error en /estaciones '+err);
@@ -70,7 +85,7 @@ app.get('/estaciones', function(req, resp) {
 });
 
 //Ejemplo: GET http://localhost:8080/observaciones
-app.get('/observaciones', function(req, resp) {
+app.get('/observaciones',auth, function(req, resp) {
     connection.query('select * from observaciones', function(err, rows) {
         if (err) {
             console.log('Error en /observaciones '+err);
@@ -88,7 +103,7 @@ app.get('/observaciones', function(req, resp) {
 });
 
 //Ejemplo: GET http://localhost:8080/observaciones/idema
-app.get('/observaciones/:idema', function(req, resp) {
+app.get('/observaciones/:idema',auth, function(req, resp) {
     connection.query(`select * from observaciones where idema="${req.params.idema}"`, function(err, rows) {
         if (err) {
             console.log('Error en /observaciones/idema '+err);
@@ -106,7 +121,7 @@ app.get('/observaciones/:idema', function(req, resp) {
 });
 
 //Ejemplo: GET http://localhost:8080/introducirDatos/:tipo
-app.get('/introducirDatos/:tipo', (req,resp)=>{
+app.get('/introducirDatos/:tipo',auth, (req,resp)=>{
     //tipo = {municipios,estaciones,observaciones}
     if(req.params.tipo=="municipios"){
         insertarMunicipios();    
