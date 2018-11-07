@@ -7,7 +7,7 @@ ColSort_connform.ListSessions<|||>1<|||>0,0
 SQLFile0<|||>1<|||>D:\Escritorio\DISM\usuariosP2.sql
 ExportSQL_DataHow<|||>3<|||>0
 ExportSQL_Filenames<|||>1<|||>D:\Escritorio\DISM\datos.sql<{{{><}}}>
-ColWidths_frmTableEditor.listColumns<|||>1<|||>22,100,156,90,60,65,50,119,130,140,100,100
+ColWidths_frmTableEditor.listColumns<|||>1<|||>28,100,156,90,60,65,50,119,130,140,100,100
 ColsVisible_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
 ColPositions_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
 ColSort_frmTableEditor.listColumns<|||>1<|||>-1,0
@@ -21,14 +21,14 @@ ColPositions_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
 ColSort_frmTableEditor.listForeignKeys<|||>1<|||>-1,0
 CoolBand0Index<|||>3<|||>0
 CoolBand0Break<|||>3<|||>1
-CoolBand0Width<|||>3<|||>1344
+CoolBand0Width<|||>3<|||>1097
 CoolBand1Index<|||>3<|||>1
 CoolBand1Break<|||>3<|||>1
-CoolBand1Width<|||>3<|||>1344
+CoolBand1Width<|||>3<|||>1097
 querymemoheight<|||>3<|||>188
-MainWinLeft<|||>3<|||>225
-MainWinTop<|||>3<|||>147
-MainWinWidth<|||>3<|||>1366
+MainWinLeft<|||>3<|||>458
+MainWinTop<|||>3<|||>175
+MainWinWidth<|||>3<|||>1119
 MainWinHeight<|||>3<|||>839
 ColWidths_MainForm.ListDatabases<|||>1<|||>150,80,50,50,50,50,50,50,50,50,120
 ColsVisible_MainForm.ListDatabases<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10
@@ -54,6 +54,8 @@ ColWidths_MainForm.ListTables<|||>1<|||>120,70,70,120,120,70,100,50,70,70,70,70,
 ColsVisible_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,18
 ColPositions_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18
 ColSort_MainForm.ListTables<|||>1<|||>0,0
+ExportSQL_CreateDatabases<|||>3<|||>1
+ExportSQL_CreateTables<|||>3<|||>1
 Servers\Unnamed\SessionCreated<|||>1<|||>2018-11-04 08:40:40
 Servers\Unnamed\Host<|||>1<|||>127.0.0.1
 Servers\Unnamed\WindowsAuth<|||>3<|||>0
@@ -83,9 +85,9 @@ Servers\Unnamed\SSL_Cert<|||>1<|||>
 Servers\Unnamed\SSL_CA<|||>1<|||>
 Servers\Unnamed\SSL_Cipher<|||>1<|||>
 Servers\Unnamed\ServerVersionFull<|||>1<|||>5.0.67-community-nt - MySQL Community Edition (GPL)
-Servers\Unnamed\ConnectCount<|||>3<|||>4
+Servers\Unnamed\ConnectCount<|||>3<|||>5
 Servers\Unnamed\ServerVersion<|||>3<|||>50067
-Servers\Unnamed\LastConnect<|||>1<|||>2018-11-06 16:46:46
+Servers\Unnamed\LastConnect<|||>1<|||>2018-11-07 16:09:33
 Servers\Unnamed\lastUsedDB<|||>1<|||>dism
 Servers\Unnamed\QueryHistory\1<|||>1<|||>2018-11-04 09:16:07|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º32'54.450744\"","44004","ababuj-id44001","40.54845854","1372", "Ababuj","65","624401", "0","Ababuj","-0.80780117","id44001","-0º48'28.084212\"")
 Servers\Unnamed\QueryHistory\2<|||>1<|||>2018-11-04 09:17:47|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º32'54.450744\"","44004","ababuj-id44001","40.54845854","1372", "Ababuj","65281","624401", "0","Madrid","-0.90780117","id44001","-0º70'28.084212\"")

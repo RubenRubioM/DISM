@@ -1,4 +1,4 @@
-
+'use strict';
 var express = require("express");
 var mysql = require('mysql');
 var app = express();
@@ -124,22 +124,23 @@ app.get('/observaciones/:idema',auth, function(req, resp) {
 app.get('/introducirDatos/:tipo',auth, (req,resp)=>{
     //tipo = {municipios,estaciones,observaciones}
     if(req.params.tipo=="municipios"){
-        insertarMunicipios();    
+        insertarMunicipios(resp);    
     }else if(req.params.tipo=="estaciones"){
-        insertarEstaciones();
+        insertarEstaciones(resp);
     }else if(req.params.tipo=="observaciones"){
-        insertarObservaciones();
+        insertarObservaciones(resp);
     }
     
 });
 
-function insertarMunicipios(){
+function insertarMunicipios(resp){
     var datos;
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
     
 
     var peti = new XMLHttpRequest();
     peti.open("GET","https://opendata.aemet.es/opendata/api/maestro/municipios?api_key=" + key,true);
+    peti.setRequestHeader("cache-control", "no-cache");
 
 
     peti.onload = function(){
@@ -148,31 +149,36 @@ function insertarMunicipios(){
         var i = 0;
         
         datos.forEach(element => {
-            if(i<10){
-                let splited = element.latitud.split('"');
-                let latitud = splited[0].concat('\\"');
-                let splited2 = element.longitud.split('"');
-                let longitud = splited2[0].concat('\\"');
-                
-                console.log(latitud);
-                var sql = `INSERT INTO municipios(latitud,id_old, url, latitud_dec, altitud, capital, num_hab, zona_comercal, destacada, nombre, longitud_dec, id,longitud) VALUES ("${latitud}", "${element.id_old}","${element.url}","${element.latitud_dec}","${element.altitud}","${element.capital}","${element.num_hab}","${element.zona_comarcal}","${element.destacada}","${element.nombre}","${element.longitud_dec}","${element.id}","${longitud}")`;
+            if(i<10000){
 
-                connection.query(sql, function(err, rows) {
-                    if (err) {
-                        console.log('Error en /introducirDatos/municipios '+err);
-                        resp.status(500);
-                        resp.send({message: "Error al insertar municipios"});
-            
-                    }
-                    else {
-                        console.log('/insertarDatos/municipios');
-            
-                        resp.status(200);
-                        resp.send(rows);
-                    }
-                })
-               
-                i++;
+                if(element.latitud!=undefined && element.id_old!=undefined && element.url!=undefined && element.latitud_dec!=undefined && element.altitud!=undefined && element.capital!=undefined && element.num_hab!=undefined && element.zona_comarcal!=undefined && element.destacada!=undefined && element.nombre!=undefined && element.longitud_dec!=undefined && element.id!=undefined && element.longitud!=undefined){
+
+                    let splited = element.latitud.split('"');
+                    let latitud = splited[0].concat('\\"');
+                    let splited2 = element.longitud.split('"');
+                    let longitud = splited2[0].concat('\\"');
+                    
+                    var sql = `INSERT INTO municipios(latitud,id_old, url, latitud_dec, altitud, capital, num_hab, zona_comarcal, destacada, nombre, longitud_dec, id,longitud) VALUES ("${latitud}", "${element.id_old}","${element.url}","${element.latitud_dec}","${element.altitud}","${element.capital}","${element.num_hab}","${element.zona_comarcal}","${element.destacada}","${element.nombre}","${element.longitud_dec}","${element.id}","${longitud}")`;
+                    console.log('Municipio '+i+' introducido...');
+
+                    connection.query(sql, function(err, rows) {
+                        if (err) {
+                            console.log('Error en /introducirDatos/municipios '+err);
+                            //resp.status(500);
+                            //resp.send({message: "Error al insertar municipios"});
+                
+                        }
+                        else {
+                
+                            resp.status(200);
+                            //resp.send(rows);
+                        }
+                    })
+                
+                    i++;
+
+                }
+                
             }
             
         });
@@ -181,11 +187,11 @@ function insertarMunicipios(){
     peti.onerror = function(){
         console.log("Vaya que ha pasao aqui...");
     }
-    peti.setRequestHeader("cache-control", "no-cache");
+    
     peti.send();
 }
 
-function insertarEstaciones(){
+function insertarEstaciones(resp){
     var datos;
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
     
@@ -206,25 +212,30 @@ function insertarEstaciones(){
             var i = 0;
             
             datos.forEach(element => {
-                if(i<10){
-                    var sql = `INSERT INTO estaciones(latitud, provincia, altitud, indicativo, nombre, indsinop, longitud) VALUES ("${element.latitud}","${element.provincia}","${element.altitud}","${element.indicativo}","${element.nombre}","${element.indsinop}","${element.longitud}")`;
+                if(i<10000){
+                    if(element.latitud!=undefined && element.provincia!=undefined && element.altitud!=undefined && element.indicativo!=undefined && element.nombre!=undefined && element.indsinop!=undefined && element.longitud!=undefined){
 
-                    connection.query(sql, function(err, rows) {
-                        if (err) {
-                            console.log('Error en /introducirDatos/estaciones '+err);
-                            resp.status(500);
-                            resp.send({message: "Error al insertar estaciones"});
-                
-                        }
-                        else {
-                            console.log('/insertarDatos/estaciones');
-                
-                            resp.status(200);
-                            resp.send(rows);
-                        }
-                    })
-                
-                    i++;
+                        var sql = `INSERT INTO estaciones(latitud, provincia, altitud, indicativo, nombre, indsinop, longitud) VALUES ("${element.latitud}","${element.provincia}","${element.altitud}","${element.indicativo}","${element.nombre}","${element.indsinop}","${element.longitud}")`;
+                        console.log('Estacion '+i+' introducida...');
+
+                        connection.query(sql, function(err, rows) {
+                            if (err) {
+                                console.log('Error en /introducirDatos/estaciones '+err);
+                                resp.status(500);
+                                resp.send({message: "Error al insertar estaciones"});
+                    
+                            }
+                            else {
+                    
+                                resp.status(200);
+                                //resp.send(rows);
+                            }
+                        })
+                    
+                        i++;
+
+                    }
+                    
                 }
                 
             });
@@ -240,11 +251,11 @@ function insertarEstaciones(){
     peti.onerror = function(){
         console.log("Vaya que ha pasao aqui...");
     }
-    peti.setRequestHeader("cache-control", "no-cache");
+    //peti.setRequestHeader("cache-control", "no-cache");
     peti.send();
 }
 
-function insertarObservaciones(){
+function insertarObservaciones(resp){
     var datos;
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';
     
@@ -265,25 +276,31 @@ function insertarObservaciones(){
             var i = 0;
             
             datos.forEach(element => {
-                if(i<10){
-                    var sql = `INSERT INTO estaciones(idema, lon, fint, prec, alt, vmax, vv,dv,lat,dmax,ubi,hr,tamin,ta,tamax,tpr,rviento) VALUES ("${element.idema}","${element.lon}","${element.altitud}","${element.fint}","${element.prec}","${element.alt}","${element.vmax}","${element.vv}","${element.dv}","${element.lat}","${element.dmax}","${element.ubi}","${element.hr}","${element.tamin}","${element.ta}","${element.tamax}","${element.tpr}","${element.rviento}")`;
+                if(i<10000){
 
-                    connection.query(sql, function(err, rows) {
-                        if (err) {
-                            console.log('Error en /introducirDatos/estaciones '+err);
-                            resp.status(500);
-                            resp.send({message: "Error al insertar estaciones"});
-                
-                        }
-                        else {
-                            console.log('/insertarDatos/estaciones');
-                
-                            resp.status(200);
-                            resp.send(rows);
-                        }
-                    })
-                
-                    i++;
+                    if(element.idema!=undefined && element.lon!=undefined && element.fint!=undefined && element.prec!=undefined && element.alt!=undefined && element.vmax!=undefined && element.vv!=undefined && element.dv!=undefined && element.lat!=undefined && element.dmax!=undefined && element.ubi!=undefined && element.hr!=undefined && element.tamin!=undefined && element.ta!=undefined && element.tamax!=undefined && element.tpr!=undefined && element.rviento!=undefined){
+                        
+                        
+                        var sql = `INSERT INTO observaciones(idema, lon, fint, prec, alt, vmax, vv,dv,lat,dmax,ubi,hr,tamin,ta,tamax,tpr,rviento) VALUES ("${element.idema}","${element.lon}","${element.fint}","${element.prec}","${element.alt}","${element.vmax}","${element.vv}","${element.dv}","${element.lat}","${element.dmax}","${element.ubi}","${element.hr}","${element.tamin}","${element.ta}","${element.tamax}","${element.tpr}","${element.rviento}")`;
+                        console.log('Observacion '+i+' introducida...');
+
+                        connection.query(sql, function(err, rows) {
+                            if (err) {
+                                console.log('Error en /introducirDatos/observaciones '+err);
+                                resp.status(500);
+                                resp.send({message: "Error al insertar observaciones"});
+                    
+                            }
+                            else {
+                    
+                                resp.status(200);
+                                //resp.send(rows);
+                            }
+                        })
+                    
+                        i++;
+                    }
+                    
                 }
                 
             });

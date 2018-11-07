@@ -82,7 +82,7 @@ function clickInfo(e) {
     var latitud = e.parentNode.parentNode.children[1].innerHTML;
     var longitud = e.parentNode.parentNode.children[2].innerHTML;
 
-    console.log(e);
+    document.getElementById('mensaje-modal').style.display = 'block';
     document.getElementById('outputMapaEmergente').innerHTML = nombre;
     var map = new Microsoft.Maps.Map('#myMap', {
         credentials: 'AqphJZdvgCLdhp_ajUuuROok1O3_jHlHE0_FLN-o1STbqzYnTeGjchdE-0Nwp41N'
