@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
     user : 'root',
     password : 'root',
     port : '3311',
-    database : 'dism'
+    database : 'dismruben'
 });
 
 var allowCrossTokenHeader = (req,res,next)=>{
