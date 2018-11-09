@@ -133,6 +133,16 @@ app.get('/introducirDatos/:tipo',auth, (req,resp)=>{
     
 });
 
+//Ejemplo: GET hhtp://localhost:8080/eliminarDatos
+app.get('/eliminarDatos',auth, (req,resp)=>{
+    connection.query("DELETE FROM municipios");
+    connection.query("DELETE FROM estaciones");
+    connection.query("DELETE FROM observaciones");
+
+    resp.status(200);
+    resp.send({message:"Todos los datos han sido eliminados"});
+})
+
 function insertarMunicipios(resp){
     var datos;
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJlbnNpcGFsYUBnbWFpbC5jb20iLCJqdGkiOiIwYzI0ZDVlMC1jODM0LTQ5YjAtYjQ3My02OWE0MDAzZWU4OGIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTUzNzE5OTE3NCwidXNlcklkIjoiMGMyNGQ1ZTAtYzgzNC00OWIwLWI0NzMtNjlhNDAwM2VlODhiIiwicm9sZSI6IiJ9.mVgNwU7E9xeMUbmZ3yJJNkuCXWR6EibEbj9WebDySCs';

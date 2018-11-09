@@ -41,7 +41,7 @@ ColWidths_MainForm.ListStatus<|||>1<|||>160,275,100,100
 ColsVisible_MainForm.ListStatus<|||>1<|||>0,1,2,3
 ColPositions_MainForm.ListStatus<|||>1<|||>0,1,2,3
 ColSort_MainForm.ListStatus<|||>1<|||>0,0
-ColWidths_MainForm.ListProcesses<|||>1<|||>70,80,80,80,80,50,50,570
+ColWidths_MainForm.ListProcesses<|||>1<|||>70,80,80,80,80,50,50,323
 ColsVisible_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
 ColPositions_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
 ColSort_MainForm.ListProcesses<|||>1<|||>0,1
@@ -86,10 +86,10 @@ Servers\Unnamed\SSL_Cert<|||>1<|||>
 Servers\Unnamed\SSL_CA<|||>1<|||>
 Servers\Unnamed\SSL_Cipher<|||>1<|||>
 Servers\Unnamed\ServerVersionFull<|||>1<|||>5.0.67-community-nt - MySQL Community Edition (GPL)
-Servers\Unnamed\ConnectCount<|||>3<|||>6
+Servers\Unnamed\ConnectCount<|||>3<|||>7
 Servers\Unnamed\ServerVersion<|||>3<|||>50067
-Servers\Unnamed\LastConnect<|||>1<|||>2018-11-08 19:03:23
-Servers\Unnamed\lastUsedDB<|||>1<|||>dism
+Servers\Unnamed\LastConnect<|||>1<|||>2018-11-09 15:17:20
+Servers\Unnamed\lastUsedDB<|||>1<|||>dismruben
 Servers\Unnamed\QueryHistory\1<|||>1<|||>2018-11-04 09:16:07|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º32'54.450744\"","44004","ababuj-id44001","40.54845854","1372", "Ababuj","65","624401", "0","Ababuj","-0.80780117","id44001","-0º48'28.084212\"")
 Servers\Unnamed\QueryHistory\2<|||>1<|||>2018-11-04 09:17:47|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º32'54.450744\"","44004","ababuj-id44001","40.54845854","1372", "Ababuj","65281","624401", "0","Madrid","-0.90780117","id44001","-0º70'28.084212\"")
 Servers\Unnamed\QueryHistory\3<|||>1<|||>2018-11-04 09:19:30|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º54'58.824504\"","40004","Madrid-id40001","40.91634014","971", "Madrid","65281","674001", "0","Madrid","-0.90780117","id40001","-0º70'28.084212\"")
