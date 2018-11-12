@@ -86,9 +86,9 @@ Servers\Unnamed\SSL_Cert<|||>1<|||>
 Servers\Unnamed\SSL_CA<|||>1<|||>
 Servers\Unnamed\SSL_Cipher<|||>1<|||>
 Servers\Unnamed\ServerVersionFull<|||>1<|||>5.0.67-community-nt - MySQL Community Edition (GPL)
-Servers\Unnamed\ConnectCount<|||>3<|||>7
+Servers\Unnamed\ConnectCount<|||>3<|||>9
 Servers\Unnamed\ServerVersion<|||>3<|||>50067
-Servers\Unnamed\LastConnect<|||>1<|||>2018-11-09 15:17:20
+Servers\Unnamed\LastConnect<|||>1<|||>2018-11-12 19:50:46
 Servers\Unnamed\lastUsedDB<|||>1<|||>dismruben
 Servers\Unnamed\QueryHistory\1<|||>1<|||>2018-11-04 09:16:07|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º32'54.450744\"","44004","ababuj-id44001","40.54845854","1372", "Ababuj","65","624401", "0","Ababuj","-0.80780117","id44001","-0º48'28.084212\"")
 Servers\Unnamed\QueryHistory\2<|||>1<|||>2018-11-04 09:17:47|dism|0|INSERT INTO municipios(latitud,id_old,url,latitud_dec,altitud,capital,num_hab,zona_comercal,destacada,nombre,longitud_dec,id,longitud)<{{{><}}}>VALUES ("40º32'54.450744\"","44004","ababuj-id44001","40.54845854","1372", "Ababuj","65281","624401", "0","Madrid","-0.90780117","id44001","-0º70'28.084212\"")

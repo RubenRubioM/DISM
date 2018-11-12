@@ -159,9 +159,9 @@ function insertarMunicipios(resp){
         var i = 0;
         
         datos.forEach(element => {
-            if(i<10000){
+            if(i<100000){
 
-                if(element.latitud!=undefined && element.id_old!=undefined && element.url!=undefined && element.latitud_dec!=undefined && element.altitud!=undefined && element.capital!=undefined && element.num_hab!=undefined && element.zona_comarcal!=undefined && element.destacada!=undefined && element.nombre!=undefined && element.longitud_dec!=undefined && element.id!=undefined && element.longitud!=undefined){
+                if(element.latitud!=undefined || element.id_old!=undefined || element.url!=undefined || element.latitud_dec!=undefined || element.altitud!=undefined || element.capital!=undefined || element.num_hab!=undefined || element.zona_comarcal!=undefined || element.destacada!=undefined || element.nombre!=undefined || element.longitud_dec!=undefined || element.id!=undefined || element.longitud!=undefined){
 
                     let splited = element.latitud.split('"');
                     let latitud = splited[0].concat('\\"');
@@ -222,8 +222,8 @@ function insertarEstaciones(resp){
             var i = 0;
             
             datos.forEach(element => {
-                if(i<10000){
-                    if(element.latitud!=undefined && element.provincia!=undefined && element.altitud!=undefined && element.indicativo!=undefined && element.nombre!=undefined && element.indsinop!=undefined && element.longitud!=undefined){
+                if(i<100000){
+                    if(element.latitud!=undefined || element.provincia!=undefined || element.altitud!=undefined || element.indicativo!=undefined || element.nombre!=undefined || element.indsinop!=undefined || element.longitud!=undefined){
 
                         var sql = `INSERT INTO estaciones(latitud, provincia, altitud, indicativo, nombre, indsinop, longitud) VALUES ("${element.latitud}","${element.provincia}","${element.altitud}","${element.indicativo}","${element.nombre}","${element.indsinop}","${element.longitud}")`;
                         console.log('Estacion '+i+' introducida...');
@@ -286,9 +286,9 @@ function insertarObservaciones(resp){
             var i = 0;
             
             datos.forEach(element => {
-                if(i<10000){
+                if(i<100000){
 
-                    if(element.idema!=undefined && element.lon!=undefined && element.fint!=undefined && element.prec!=undefined && element.alt!=undefined && element.vmax!=undefined && element.vv!=undefined && element.dv!=undefined && element.lat!=undefined && element.dmax!=undefined && element.ubi!=undefined && element.hr!=undefined && element.tamin!=undefined && element.ta!=undefined && element.tamax!=undefined && element.tpr!=undefined && element.rviento!=undefined){
+                    if(element.idema!=undefined || element.lon!=undefined || element.fint!=undefined || element.prec!=undefined || element.alt!=undefined || element.vmax!=undefined || element.vv!=undefined || element.dv!=undefined || element.lat!=undefined || element.dmax!=undefined || element.ubi!=undefined || element.hr!=undefined || element.tamin!=undefined || element.ta!=undefined || element.tamax!=undefined || element.tpr!=undefined || element.rviento!=undefined){
                         
                         
                         var sql = `INSERT INTO observaciones(idema, lon, fint, prec, alt, vmax, vv,dv,lat,dmax,ubi,hr,tamin,ta,tamax,tpr,rviento) VALUES ("${element.idema}","${element.lon}","${element.fint}","${element.prec}","${element.alt}","${element.vmax}","${element.vv}","${element.dv}","${element.lat}","${element.dmax}","${element.ubi}","${element.hr}","${element.tamin}","${element.ta}","${element.tamax}","${element.tpr}","${element.rviento}")`;
@@ -327,7 +327,7 @@ function insertarObservaciones(resp){
     peti.onerror = function(){
         console.log("Vaya que ha pasao aqui...");
     }
-    peti.setRequestHeader("cache-control", "no-cache");
+    //peti.setRequestHeader("cache-control", "no-cache");
     peti.send();
 }
 var server = app.listen(8080, function () {
