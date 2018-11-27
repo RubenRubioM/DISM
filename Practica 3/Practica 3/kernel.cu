@@ -19,10 +19,26 @@ void suma_vectores_gpu(float *a, float *b, float *c, int n) {
 	// threadIdx.x --> nos dice dentro de cada bloque que hilo soy
 	// blockIdx.x --> nos dice que bloque soy dentro de una malla
 	// blockDim.x --> tamanyo del bloque
+
+	//Ejercicio 3
+	
 	int idx_ = blockIdx.x * blockDim.x + threadIdx.x;
 	if (idx_ < n) {
+		
 		c[idx_] = a[idx_] + b[idx_];
+		
 	}
+	
+
+	//Ejercicio 4
+	
+	/*int idx_ = blockIdx.x * blockDim.x + threadIdx.x;
+	if (idx_ < n) {
+		for (int i = idx_; i < n; i += blockDim.x * gridDim.x)
+		{
+			c[i] = a[i] + b[i];
+		}
+	}*/
 	
 	
 }
@@ -31,8 +47,9 @@ void suma_vectores_gpu(float *a, float *b, float *c, int n) {
 int main(void) {
 	
 	cudaSetDevice(0);
-	const int kNumElements = 25599;
+	const int kNumElements = 30000000;
 	const int kNumBytes = sizeof(float)*kNumElements;
+	
 
 	float *h_a_ = (float *)malloc(kNumBytes);
 	float *h_b_ = (float *)malloc(kNumBytes);
@@ -74,15 +91,16 @@ int main(void) {
 		bloquesPorGrid = (kNumElements / hilosPorBloque)+1;
 	}
 
-	std::cout << bloquesPorGrid << "\n";
-
-	int hilosUltimoBloque = kNumElements % bloquesPorGrid;
-
-	std::cout << hilosUltimoBloque << "\n";
+	
+	//Sirve para calcular el numero maximo de bloques que se puede crear en un grid simultaneamente
+	int numSMs;
+	cudaDeviceGetAttribute(&numSMs, cudaDevAttrMultiProcessorCount, 0);
+	
 	dim3 tpb_(hilosPorBloque, 1, 1);
 	dim3 bpg_(bloquesPorGrid, 1, 1);
 	
 	suma_vectores_gpu <<<bpg_, tpb_ >>> (d_a_, d_b_, d_c_, kNumElements);
+
 	cudaError_t err_ = cudaGetLastError();
 
 	if (err_ != cudaSuccess) {
