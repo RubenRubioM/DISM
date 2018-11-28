@@ -22,23 +22,23 @@ void suma_vectores_gpu(float *a, float *b, float *c, int n) {
 
 	//Ejercicio 3
 	
-	int idx_ = blockIdx.x * blockDim.x + threadIdx.x;
+	/*int idx_ = blockIdx.x * blockDim.x + threadIdx.x;
 	if (idx_ < n) {
 		
 		c[idx_] = a[idx_] + b[idx_];
 		
-	}
+	}*/
 	
 
 	//Ejercicio 4
 	
-	/*int idx_ = blockIdx.x * blockDim.x + threadIdx.x;
+	int idx_ = blockIdx.x * blockDim.x + threadIdx.x;
 	if (idx_ < n) {
 		for (int i = idx_; i < n; i += blockDim.x * gridDim.x)
 		{
 			c[i] = a[i] + b[i];
 		}
-	}*/
+	}
 	
 	
 }
@@ -83,21 +83,29 @@ int main(void) {
 	int hilosPorBloque = 256;
 	int bloquesPorGrid;
 	
+	//Sirve para calcular el numero maximo de bloques que se puede crear en un grid simultaneamente
+	int numHilosBloque;
+	cudaDeviceGetAttribute(&numHilosBloque, cudaDevAttrMaxThreadsPerBlock, 0);
+
+	// Numero maximo de bloques en x de un grid
+	int numBloquesGrid;
+	cudaDeviceGetAttribute(&numBloquesGrid, cudaDevAttrMaxBlockDimX, 0);
+
 	//int bloquesPorGrid = (int)ceil((kNumElements / hilosPorBloque));
-	if (kNumElements%hilosPorBloque == 0) {
-		bloquesPorGrid = (kNumElements / hilosPorBloque);
+	/*if (kNumElements%numHilosBloque == 0) {
+		bloquesPorGrid = (kNumElements / numHilosBloque);
 	}
 	else {
-		bloquesPorGrid = (kNumElements / hilosPorBloque)+1;
-	}
+		bloquesPorGrid = (kNumElements / numHilosBloque)+1;
+	}*/
 
-	
 	//Sirve para calcular el numero maximo de bloques que se puede crear en un grid simultaneamente
-	int numSMs;
-	cudaDeviceGetAttribute(&numSMs, cudaDevAttrMultiProcessorCount, 0);
+	//int numSMs;
+	//cudaDeviceGetAttribute(&numSMs, cudaDevAttrMultiProcessorCount, 0);
 	
-	dim3 tpb_(hilosPorBloque, 1, 1);
-	dim3 bpg_(bloquesPorGrid, 1, 1);
+	
+	dim3 tpb_(numHilosBloque, 1, 1);
+	dim3 bpg_(numBloquesGrid, 1, 1);
 	
 	suma_vectores_gpu <<<bpg_, tpb_ >>> (d_a_, d_b_, d_c_, kNumElements);
 
